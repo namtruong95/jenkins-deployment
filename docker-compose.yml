@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+
+  ### JENKINS Server Container ###
+  jenkins:
+    build: ./jenkins
+    volumes:
+      - ./jenkins/lib/jenkins:/var/lib/jenkins
+      # - /var/run/docker.sock:/var/run/docker.sock
+    ports:
+      - "${JENKINS_PORT}:8080"
+    networks:
+      - backend
+
+networks:
+  backend:
+    driver: "bridge"
